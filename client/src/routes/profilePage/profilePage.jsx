@@ -1,8 +1,16 @@
 import React from 'react'
 import List from '../../compoenents/list/list';
 import Chat from '../../compoenents/chat/chat';
+import { AuthContext } from '../../context/AuthContext';
+import { useContext } from 'react';
 import "./profilePage.scss"
 function ProfilePage() {
+  const {updateUser,currentUser} = useContext(AuthContext)
+  console.log(updateUser)
+  console.log(currentUser)
+  // const {currentUser,updateUser}=useContext(AuthContext)
+  // console.log(currentUser)
+
   return (
     <div className='profile'>
       <div className="details">
@@ -13,11 +21,11 @@ function ProfilePage() {
           </div>
           <div className="info">
             <span className='span-img'>Avatar:
-              <img src="https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="" className='span-img'/>
+              <img src={currentUser.avatar || "/noavatar.jpg"} alt="" className='span-img'/>
               </span>
             
-            <span>Username : <b>John Doe</b></span>
-            <span>Email-ID : <b>johndoe@gmail.com</b></span>
+            <span>Username : <b>{currentUser.username}</b></span>
+            <span>Email-ID : <b>{currentUser.email}</b></span>
           </div>
           <div className="title">
             <h1>My List</h1>

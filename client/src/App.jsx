@@ -7,7 +7,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import ListPage from "./routes/listPage/listPage";
-import Layout from "./routes/layout/layout";
+import {Layout, RequireAuth } from "./routes/layout/layout";
 import SinglePage from "./routes/singlePage/SinglePage";
 import 'leaflet/dist/leaflet.css';
 import ProfilePage from "./routes/profilePage/profilePage";
@@ -30,9 +30,7 @@ function App() {
         {path:"/:id",
           element:<SinglePage/>
         },
-        {path:"/profile",
-          element:<ProfilePage/>
-        },
+        
         {path:"/login",
           element:<Login/>
         },
@@ -41,6 +39,16 @@ function App() {
         },
       
     ]
+   },
+   {
+    path:"/",
+    element:<RequireAuth/>,
+    children:[
+      {path:"/profile",
+        element:<ProfilePage/>
+      }
+    ]
+
    }
   ])
   return (

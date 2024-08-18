@@ -1,19 +1,35 @@
-import express from "express"
-import cookieParser from "cookie-parser"
-import postRoute from "./routes/post.route.js"
-const app = express()
+import express from "express";
+import cookieParser from "cookie-parser";
 import cors from 'cors';
+
+import postRoute from "./routes/post.route.js";
+import testRoute from "./routes/test.route.js";
+import authRouter from "./routes/auth.route.js";
+
+const app = express();
+
+// CORS configuration
 app.use(cors({
     origin: 'http://localhost:5173', // replace with your frontend's origin
     credentials: true, // Enable Access-Control-Allow-Credentials
-  }));
-import authRouter from "./routes/auth.route.js"
+}));
 
-app.use(express.json())
-app.use(cookieParser())
-app.use("/api/auth",authRouter)
+// Middleware
+app.use(express.json());
+app.use(cookieParser());
 
-app.use("/api/posts",postRoute)
-app.listen(8800,()=>{
-    console.log("server is running on port 8800")
-})
+// Routes
+app.use("/api/auth", authRouter);
+app.use("/api/posts", postRoute);
+app.use("/api/test", testRoute);
+
+// Error handling middleware (optional)
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).send('Something went wrong!');
+});
+
+// Start server
+app.listen(8800, () => {
+    console.log("Server is running on port 8800");
+});
