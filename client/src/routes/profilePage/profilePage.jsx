@@ -1,4 +1,4 @@
-import React from 'react'
+//import React from 'react'
 import List from '../../compoenents/list/list';
 import Chat from '../../compoenents/chat/chat';
 import { AuthContext } from '../../context/AuthContext';

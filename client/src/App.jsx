@@ -1,4 +1,4 @@
-import Navbar from "./compoenents/navbar/Navbar"
+//import Navbar from "./compoenents/navbar/Navbar"
 import "./index.scss"
 import "./layout.scss"
 import HomePage from "./routes/homepage/Homepage"
@@ -10,7 +10,8 @@ import ListPage from "./routes/listPage/listPage";
 import {Layout, RequireAuth } from "./routes/layout/layout";
 import SinglePage from "./routes/singlePage/SinglePage";
 import 'leaflet/dist/leaflet.css';
-import ProfilePage from "./routes/profilePage/profilePage";
+
+import ProfilePage from "./routes/profilepage/profilePage";
 import Login from "./routes/login/login";
 import Register from "./routes/register/register";
 
