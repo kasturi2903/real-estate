@@ -3,8 +3,9 @@ import "./newPostPage.scss";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import apiRequest from "../../lib/apiRequest";
-import UploadWidget from "../../components/uploadWidget/UploadWidget";
+
 import { useNavigate } from "react-router-dom";
+import UploadWidget from "../../compoenents/uploadWidget/uploadWidget";
 
 function NewPostPage() {
   const [value, setValue] = useState("");
