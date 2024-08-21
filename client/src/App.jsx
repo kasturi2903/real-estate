@@ -14,6 +14,9 @@ import 'leaflet/dist/leaflet.css';
 import ProfilePage from "./routes/profilepage/profilePage";
 import Login from "./routes/login/login";
 import Register from "./routes/register/register";
+import ProfileUpdatePage from "./routes/profileUpdatePage/profileUpdatePage";
+import NewPostPage from "./routes/newPostpage/newPostPage";
+import { listPageLoader, singlePageLoader } from "./lib/loaders";
 
 function App() {
 
@@ -26,10 +29,12 @@ function App() {
           <HomePage/>
         },
         {path:"/list",
-          element:<ListPage/>
+          element:<ListPage/>,
+          loader:listPageLoader,
         },
         {path:"/:id",
-          element:<SinglePage/>
+          element:<SinglePage/>,
+          loader:singlePageLoader
         },
         
         {path:"/login",
@@ -46,7 +51,14 @@ function App() {
     element:<RequireAuth/>,
     children:[
       {path:"/profile",
-        element:<ProfilePage/>
+        element:<ProfilePage/>,
+      },
+      {
+        path:"/profile/update",
+        element:<ProfileUpdatePage/>,
+      },{
+        path:"/add",
+        element:<NewPostPage/>
       }
     ]
 

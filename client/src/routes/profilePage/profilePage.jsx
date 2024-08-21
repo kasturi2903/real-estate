@@ -1,50 +1,54 @@
-//import React from 'react'
-import List from '../../compoenents/list/list';
-import Chat from '../../compoenents/chat/chat';
-import { AuthContext } from '../../context/AuthContext';
-import { useContext } from 'react';
-import "./profilePage.scss"
-function ProfilePage() {
-  const {updateUser,currentUser} = useContext(AuthContext)
-  console.log(updateUser)
-  console.log(currentUser)
-  // const {currentUser,updateUser}=useContext(AuthContext)
-  // console.log(currentUser)
 
+import { Link } from "react-router-dom";
+import Chat from "../../compoenents/chat/chat";
+import List from "../../compoenents/list/list";
+
+import "./profilePage.scss";
+
+function ProfilePage() {
   return (
-    <div className='profile'>
+    <div className="profilePage">
       <div className="details">
         <div className="wrapper">
           <div className="title">
             <h1>User Information</h1>
-            <button>Update Profile</button>
+            <Link to="/profile/update"><button>Update Profile</button></Link>
+            
           </div>
           <div className="info">
-            <span className='span-img'>Avatar:
-              <img src={currentUser.avatar || "/noavatar.jpg"} alt="" className='span-img'/>
-              </span>
-            
-            <span>Username : <b>{currentUser.username}</b></span>
-            <span>Email-ID : <b>{currentUser.email}</b></span>
+            <span>
+              Avatar:
+              <img
+                src="https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                alt=""
+              />
+            </span>
+            <span>
+              Username: <b>John Doe</b>
+            </span>
+            <span>
+              E-mail: <b>john@gmail.com</b>
+            </span>
           </div>
           <div className="title">
             <h1>My List</h1>
-            <button>Create New Post</button>
+            <Link to="/add"><button>Create New Post</button></Link>
+            
           </div>
-          <List />
+          <List/>
           <div className="title">
             <h1>Saved List</h1>
           </div>
           <List />
         </div>
       </div>
-      <div className="chat-container">
+      <div className="chatContainer">
         <div className="wrapper">
-          <Chat />
+          <Chat/>
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 export default ProfilePage;
