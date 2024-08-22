@@ -1,4 +1,5 @@
 import prisma from "../lib/prisma.js";
+
 import jwt from "jsonwebtoken";
 
 export const getPosts = async(req, res) => {
@@ -43,7 +44,7 @@ export const getPost = async(req, res) => {
             },
         });
 
-        const token = req.cookies ?.token;
+        const token = req.cookies?.token;
 
 
         if (token) {
