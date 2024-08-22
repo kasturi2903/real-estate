@@ -3,6 +3,9 @@ import List from '../../compoenents/list/list';
 import Chat from '../../compoenents/chat/chat';
 import { AuthContext } from '../../context/AuthContext';
 import { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import apiRequest from "../../lib/apiRequest";
+
 import "./profilePage.scss"
 function ProfilePage() {
   const {updateUser,currentUser} = useContext(AuthContext)
@@ -10,6 +13,17 @@ function ProfilePage() {
   console.log(currentUser)
   // const {currentUser,updateUser}=useContext(AuthContext)
   // console.log(currentUser)
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    try {
+      await apiRequest.post('/auth/logout');
+      updateUser(null);
+      navigate('/');
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <div className='profile'>
@@ -26,6 +40,8 @@ function ProfilePage() {
             
             <span>Username : <b>{currentUser.username}</b></span>
             <span>Email-ID : <b>{currentUser.email}</b></span>
+            <button className="logout-btn" onClick={handleLogout}>Logout</button>
+
           </div>
           <div className="title">
             <h1>My List</h1>
